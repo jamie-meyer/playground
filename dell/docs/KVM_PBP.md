@@ -110,7 +110,7 @@ with the selected video input. A hotkey agent should run on both computers:
 ./build/dellctl hotkey --enable-writes hdmi1
 ```
 
-Both agents intercept the exact global `Ctrl-A` chord and suppress it from
+Both agents intercept the exact global `Option-A` chord and suppress it from
 the foreground application. Each sends its predetermined target immediately,
 without a preliminary monitor read. macOS requires Accessibility permission
 for this locally compiled binary; it does not require root or a user group.

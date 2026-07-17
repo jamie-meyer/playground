@@ -1336,7 +1336,7 @@ static int parse_usb_upstream(const char *text, uint8_t *upstream) {
 
 static void perform_hotkey_switch(void *info) {
     HotkeyContext *context = info;
-    printf("Ctrl-A: switching to %s...\n",
+    printf("Option-A: switching to %s...\n",
            source_name(context->target_source));
     fflush(stdout);
     (void)command_switch_input(context->target_source, false);
@@ -1365,9 +1365,9 @@ static CGEventRef hotkey_callback(
     CGEventFlags flags = CGEventGetFlags(event) & relevant_flags;
     int64_t keycode =
         CGEventGetIntegerValueField(event, kCGKeyboardEventKeycode);
-    bool ctrl_a =
-        keycode == 0 && flags == kCGEventFlagMaskControl;
-    if (!ctrl_a) {
+    bool option_a =
+        keycode == 0 && flags == kCGEventFlagMaskAlternate;
+    if (!option_a) {
         return event;
     }
 
@@ -1381,7 +1381,7 @@ static CGEventRef hotkey_callback(
         }
     }
 
-    /* Ctrl-A is the requested global hotkey, so do not pass it to the app. */
+    /* Option-A is the requested global hotkey, so do not pass it to the app. */
     return NULL;
 }
 
@@ -1458,7 +1458,7 @@ static int command_hotkey(uint16_t target_source) {
         context.run_loop, tap_source, kCFRunLoopCommonModes);
     CGEventTapEnable(context.event_tap, true);
 
-    printf("Ctrl-A hotkey active; target input is %s (0x%02X).\n",
+    printf("Option-A hotkey active; target input is %s (0x%02X).\n",
            source_name(target_source),
            target_source);
     puts("This process must run on both computers, targeting the other "

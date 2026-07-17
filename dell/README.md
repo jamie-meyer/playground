@@ -49,7 +49,7 @@ remain opt-in:
 
 For the requested rapid two-computer handoff, run the hotkey agent on both
 computers: target `usb-c` on the HDMI1 computer and target `hdmi1` on the
-USB-C computer. The exact global `Ctrl-A` chord is consumed by the agent.
+USB-C computer. The exact global `Option-A` chord is consumed by the agent.
 See [`docs/KVM_PBP.md`](docs/KVM_PBP.md) before the first live switch.
 
 ## Research map
