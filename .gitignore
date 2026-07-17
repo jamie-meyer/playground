@@ -1,4 +1,6 @@
 .DS_Store
 /:-
 /dell/build/
+/dell/app/.build/
+/dell/app/build/
 /dell/DDPMv2.3.0.0023/

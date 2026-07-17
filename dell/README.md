@@ -52,6 +52,32 @@ computers: target `usb-c` on the HDMI1 computer and target `hdmi1` on the
 USB-C computer. The exact global `Option-A` chord is consumed by the agent.
 See [`docs/KVM_PBP.md`](docs/KVM_PBP.md) before the first live switch.
 
+## Menu-bar app
+
+The native [`Dell Control`](app/README.md) menu-bar app wraps the same
+live-tested switching path with a selectable target, recordable global
+hotkey, persistent settings, manual switching, and Launch at Login:
+
+```sh
+make app
+make install
+open "/Applications/Dell Control.app"
+```
+
+The app is built and ad-hoc signed entirely from this repository. It does not
+use or install DDPM. The install step puts it in `/Applications` before the
+first launch so macOS can retain a stable Launch at Login path.
+
+A Developer ID–signed and notarized distribution can be produced without the
+Xcode UI:
+
+```sh
+make release
+```
+
+See the app README for the signing identity, notarization-profile overrides,
+and final archive path.
+
 ## Research map
 
 - [`docs/PROTOCOL.md`](docs/PROTOCOL.md): byte-level HID, I2C, private Dell and
