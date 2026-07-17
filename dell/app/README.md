@@ -12,6 +12,10 @@ The first version provides:
 - persistent settings; and
 - Launch at Login through Apple's `SMAppService`.
 
+The app only registers Launch at Login after it is running from
+`/Applications`. If an older copy registered itself from Downloads, launching
+the installed app refreshes that registration to the installed path.
+
 The app uses Carbon's system hotkey registration, so keyboard capture does
 not require Accessibility or Input Monitoring permission. Monitor writes use
 the same public IOKit HID path as `dellctl`.
@@ -39,13 +43,18 @@ configured for this project:
 make release
 ```
 
-It signs the nested helper and app inside-out with Hardened Runtime and secure
-timestamps, submits a temporary ZIP to Apple's notary service, staples and
-validates the returned ticket, runs a Gatekeeper assessment, and creates:
+It generates the app icon, signs the nested helper and app inside-out with
+Hardened Runtime and secure timestamps, notarizes and staples the app, creates
+a drag-to-Applications disk image, then signs, notarizes, staples, and verifies
+the disk image:
 
 ```text
-app/build/dist/Dell-Control-0.1.0-macos-arm64.zip
+app/build/dist/Dell-Control-0.1.1-macos-arm64.dmg
 ```
+
+To install the release, open the DMG, drag **Dell Control** onto the
+**Applications** shortcut, eject the disk image, and launch the copy in
+`/Applications`.
 
 The defaults can be overridden without editing the Makefile:
 
@@ -59,7 +68,7 @@ The identity name and Keychain profile name are not secrets. The private key
 and notarization credentials remain in Keychain and are never copied into the
 repository or release archive.
 
-Install and launch it:
+For a local build, install and launch it:
 
 ```sh
 make install
@@ -71,9 +80,9 @@ Then configure each computer's target:
 - on the HDMI 1 computer, target USB-C;
 - on the USB-C computer, target HDMI 1.
 
-The app requests Launch at Login on its first launch. If macOS requires user
-approval, the menu and settings window show a mixed state; click it to open
-the Login Items settings.
+The installed app requests Launch at Login on its first launch. If macOS
+requires user approval, the menu and settings window show a mixed state; click
+it to open the Login Items settings.
 
 Stop any older `dellctl hotkey` terminal process before using the app so a
 single program owns the shortcut.

@@ -241,6 +241,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         }
 
         launchAtLoginItem?.state = {
+            guard launchAtLogin.isInstalledInApplications else {
+                return .off
+            }
             switch launchAtLogin.status {
             case .enabled:
                 return .on

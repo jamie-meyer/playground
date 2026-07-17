@@ -66,7 +66,8 @@ open "/Applications/Dell Control.app"
 
 The app is built and ad-hoc signed entirely from this repository. It does not
 use or install DDPM. The install step puts it in `/Applications` before the
-first launch so macOS can retain a stable Launch at Login path.
+first launch so macOS can retain a stable Launch at Login path. Release builds
+are distributed as a drag-to-Applications DMG.
 
 A Developer ID–signed and notarized distribution can be produced without the
 Xcode UI:

@@ -25,6 +25,18 @@ enum DellControlMain {
                 Set(["usb-c", "dp1", "dp2", "hdmi1", "hdmi2"]),
             "Monitor source catalog is incomplete."
         )
+        precondition(
+            LaunchAtLoginController.isInstalledApplicationURL(
+                URL(fileURLWithPath: "/Applications/Dell Control.app")
+            ),
+            "Applications-folder detection rejected an installed app."
+        )
+        precondition(
+            !LaunchAtLoginController.isInstalledApplicationURL(
+                URL(fileURLWithPath: "/Users/example/Downloads/Dell Control.app")
+            ),
+            "Applications-folder detection accepted a downloaded app."
+        )
         let helperURL = Bundle.main.bundleURL
             .appendingPathComponent("Contents/Helpers/dellctl")
         precondition(

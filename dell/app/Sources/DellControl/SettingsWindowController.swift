@@ -68,13 +68,17 @@ final class SettingsWindowController: NSWindowController {
         )
         hotKeyEnabled.state = preferences.isHotKeyEnabled ? .on : .off
         hotKeyValue.stringValue = preferences.hotKey.displayString
-        switch launchAtLogin.status {
-        case .enabled:
-            launchAtLoginButton.state = .on
-        case .requiresApproval:
-            launchAtLoginButton.state = .mixed
-        default:
+        if !launchAtLogin.isInstalledInApplications {
             launchAtLoginButton.state = .off
+        } else {
+            switch launchAtLogin.status {
+            case .enabled:
+                launchAtLoginButton.state = .on
+            case .requiresApproval:
+                launchAtLoginButton.state = .mixed
+            default:
+                launchAtLoginButton.state = .off
+            }
         }
         loginStatus.stringValue = launchAtLogin.statusDescription
     }
