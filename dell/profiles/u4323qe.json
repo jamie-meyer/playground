@@ -1,0 +1,91 @@
+{
+  "model": "U4323QE",
+  "observed_at": "2026-07-16",
+  "transport": {
+    "usb_vid": "0x0424",
+    "usb_pid": "0x7260",
+    "usage_page": "0xFF",
+    "usage": "0x01",
+    "i2c_address": "0x37",
+    "report_size": 64
+  },
+  "mccs_version": "2.1",
+  "sources": {
+    "usb-c": "0x1B",
+    "dp1": "0x0F",
+    "dp2": "0x13",
+    "hdmi1": "0x11",
+    "hdmi2": "0x12"
+  },
+  "vcp": {
+    "main_input": "0x60",
+    "video_swap": "0xE5",
+    "usb_association": "0xE7",
+    "sub_inputs": "0xE8",
+    "pip_pbp_layout": "0xE9"
+  },
+  "pip_pbp_layouts": {
+    "off": "0x00",
+    "pip-small": "0x21",
+    "pip-large": "0x22",
+    "side-by-side": "0x24",
+    "top-bottom": "0x2F",
+    "three-a": "0x31",
+    "three-b": "0x32",
+    "three-c": "0x33",
+    "three-d": "0x34",
+    "three-e": "0x35",
+    "quad": "0x41"
+  },
+  "advertised_but_unnamed_layouts": [
+    "0x01",
+    "0x02"
+  ],
+  "unsupported_generic_ddpm_layouts": {
+    "plain-side-by-side": "0x23",
+    "two-window-ratios": [
+      "0x25",
+      "0x26",
+      "0x27",
+      "0x28",
+      "0x29",
+      "0x2A",
+      "0x2B",
+      "0x2C",
+      "0x2D",
+      "0x2E"
+    ],
+    "sixth-three-window-layout": "0x36",
+    "alternate-four-window-layout": "0x42"
+  },
+  "encodings": {
+    "sub_inputs": "window2 | (window3 << 5) | (window4 << 10)",
+    "usb_association": "((dp1-1) << 12) | ((dp2-1) << 10) | ((hdmi1-1) << 8) | ((hdmi2-1) << 6)",
+    "advance_usb_owner": "write 0xFF00 to VCP 0xE7",
+    "video_swap": "write 0xF000 | ((windowA-1) << 4) | (windowB-1) to VCP 0xE5"
+  },
+  "live_snapshot": {
+    "main_input": {
+      "raw": "0x8411",
+      "decoded": "hdmi1"
+    },
+    "pip_pbp_layout": {
+      "raw": "0x0000",
+      "decoded": "off"
+    },
+    "sub_inputs": {
+      "raw": "0x6F71",
+      "window2": "hdmi1",
+      "window3": "usb-c",
+      "window4": "usb-c"
+    },
+    "usb_association": {
+      "raw": "0x1640",
+      "dp1": "usb-c2",
+      "dp2": "usb-c2",
+      "hdmi1": "usb-c3",
+      "hdmi2": "usb-c2"
+    }
+  },
+  "capability_string": "(prot(monitor)type(lcd)model(U4323QE)cmds(01 02 03 07 0C E3 F3)vcp(02 04 05 08 10 12 14(04 05 06 08 09 0B 0C) 16 18 1A 52 60( 1B 0F 13 11 12) 62 8D AC AE B2 B6 C6 C8 C9 CC(02 03 04 06 09 0A 0D 0E) D6(01 04 05) DC(00 ) DF E0 E1 E2(00 0C 0D 0F 10 11 13 14) E5 E7(00 01 02 03) E8 E9(00 01 02 21 22 24 2F 31 32 33 34 35 41) EE EF F1 F2 FE FD)mccs_ver(2.1)mswhql(1))"
+}
